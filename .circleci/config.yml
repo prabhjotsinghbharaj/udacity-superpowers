@@ -46,6 +46,7 @@ jobs:
       - run:
           name: Build front-end
           command: |
+            exit 1
             cd frontend
             npm i
             npm run build
