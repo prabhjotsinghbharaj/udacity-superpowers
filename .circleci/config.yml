@@ -236,7 +236,7 @@ jobs:
             echo "[all]" > ./inventory
             echo ${PUBLIC_DNS} >> ./inventory
             cat ./inventory
-            cd ~
+            cd ..
             printenv >> ./backend/.env
             cd .circleci/ansible/
             ansible-playbook -i ./inventory deploy.yml
