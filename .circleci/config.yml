@@ -236,6 +236,7 @@ jobs:
             echo "[all]" > ./inventory
             echo ${PUBLIC_DNS} >> ./inventory
             cat ./inventory
+            touch ./backend/.env
             printenv >> ./backend/.env
             cd .circleci/ansible/
             ansible-playbook -i ./inventory deploy.yml
@@ -346,9 +347,9 @@ workflows:
           filters:
             branches:
               only: [test-feature-branch]
-      - deploy-frontend:
-          requires: [deploy-infrastructure]
       - deploy-backend:
+          requires: [deploy-infrastructure]
+      - deploy-frontend:
           requires: [deploy-infrastructure]
       - smoke-test:
           requires: [deploy-backend, deploy-frontend]
