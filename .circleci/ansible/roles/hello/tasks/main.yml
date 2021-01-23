@@ -1,4 +1,0 @@
-- name: "create helloworld text file"
-  copy:
-    content: hello world
-    dest: /tmp/helloworld.txt
