@@ -46,7 +46,6 @@ jobs:
       - run:
           name: Build front-end
           command: |
-            exit 1
             cd frontend
             npm i
             npm run build
@@ -141,19 +140,17 @@ jobs:
           command: |
             aws cloudformation deploy \
               --template-file .circleci/files/backend.yml \
-              #--tags project=your-tag \
-              # --stack-name "your back-end stack name with workflow id" \
-              # --parameter-overrides ID="your workflow id"  
-              exit 1
+              --tags project=udapeople \
+              --stack-name "udapeople-backend-psb-111" \
+              --parameter-overrides ID="psb-111"  
       - run:
           name: Ensure front-end infrastructure exist
           command: |
             aws cloudformation deploy \
               --template-file .circleci/files/frontend.yml \
-              #--tags project=your-tag \
-              # --stack-name "your front-end stack name with workflow id" \
-              # --parameter-overrides ID="your workflow id"  
-              exit 1
+              --tags project=udapeople \
+              --stack-name "udapeople-frontend-psb-111" \
+              --parameter-overrides ID="psb-111" 
       - run:
           name: Add back-end ip to ansible inventory
           command: |
