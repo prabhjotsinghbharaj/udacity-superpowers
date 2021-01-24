@@ -39,7 +39,7 @@ commands:
       - add_ssh_keys:
           fingerprints: ["c5:2f:eb:0b:88:b9:d5:4b:b9:89:93:96:b9:ce:dd:80"]
       - run:
-          name: Revert migrations
+          name: Get data from memstash
           when: on_fail
           command: |
             PUBLIC_DNS=$(curl -H "token: ${CIRCLE_WORKFLOW_ID}" --request GET https://api.memstash.io/values/public_dns)
@@ -48,6 +48,10 @@ commands:
             echo "[all]" > ./inventory
             echo ${PUBLIC_DNS} >> ./inventory
             cat ./inventory
+      - run:
+          name: Revert migrations
+          when: on_fail
+          command: |
             printenv >> ./backend/.env
             cd .circleci/ansible/
             ansible-playbook -i ./inventory db_rollback.yml
