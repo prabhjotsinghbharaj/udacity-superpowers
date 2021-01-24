@@ -241,7 +241,7 @@ jobs:
             echo ${PUBLIC_DNS} >> ./inventory
             cat ./inventory
       - run:
-          name: Run Ansible
+          name: Configure using Ansible
           command: |
             printenv >> ./backend/.env
             cd .circleci/ansible/
