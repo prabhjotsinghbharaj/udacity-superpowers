@@ -363,7 +363,7 @@ workflows:
               only: master
       - cloudfront-update:
           requires:
-            - smoke-test
+            - deploy-frontend
           filters:
             branches:
               only: master      
