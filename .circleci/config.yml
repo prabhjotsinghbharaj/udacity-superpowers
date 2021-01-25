@@ -252,6 +252,7 @@ jobs:
           name: Configure using Ansible
           command: |
             printenv >> ./backend/.env
+            cat .env
             cd .circleci/ansible/
             ansible-playbook -i ./inventory deploy.yml
       - revert-migrations
@@ -304,12 +305,27 @@ jobs:
       - run:
           name: Update Cloudfront and Clean up
           command: |
+            export OldWorkflowID=$(aws cloudformation list-exports --query "Exports[?Name=='WorkflowID'].Value" --output text)
+            echo OldWorkflowID=${OldWorkflowID}
+            export STACKS=$(aws cloudformation list-stacks --query "StackSummaries[*].StackName" --stack-status-filter UPDATE_COMPLETE CREATE_COMPLETE --output text)
+            echo STACKS=${STACKS}
             echo "Create/Update CloudFront"
             aws cloudformation deploy \
               --stack-name udapeople-cloudfront \
               --template-file .circleci/files/cloudfront.yml \
               --region ${AWS_DEFAULT_REGION} \
               --parameter-overrides WorkflowID="${CIRCLE_WORKFLOW_ID}"
+            echo "Delete old infrastructure"
+            if [ -n "${OldWorkflowID}" ] && [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
+            then
+              echo deleting all files at S3 bucket udapeople-${OldWorkflowID}
+              aws s3 rm s3://udapeople-${OldWorkflowID}/ --recursive
+              echo deleting stack udapeople-frontend-${OldWorkflowID}
+              aws cloudformation delete-stack --stack-name udapeople-frontend-${OldWorkflowID}
+              echo deleting stack udapeople-backend-${OldWorkflowID}
+              aws cloudformation delete-stack --stack-name udapeople-backend-${OldWorkflowID}
+            fi
+
       - destroy-environment
       - slack/status
             
@@ -379,5 +395,4 @@ workflows:
             - smoke-test
           filters:
             branches:
-              only: master
-      
+              only: master      
