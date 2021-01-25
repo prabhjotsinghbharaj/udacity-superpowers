@@ -304,10 +304,6 @@ jobs:
       - run:
           name: Update Cloudfront and Clean up
           command: |
-            #export OldWorkflowID=$(aws cloudformation list-exports --query "Exports[?Name=='WorkflowID'].Value" --output text)
-            #echo OldWorkflowID=${OldWorkflowID}
-            #export STACKS=$(aws cloudformation list-stacks --query "StackSummaries[*].StackName" --stack-status-filter UPDATE_COMPLETE CREATE_COMPLETE --output text)
-            #echo STACKS=${STACKS}
             echo "Create/Update CloudFront"
             aws cloudformation deploy \
               --stack-name udapeople-cloudfront \
