@@ -2,6 +2,7 @@
   shell: |
     cd /home/ubuntu/backend
     npm run build
+    npm audit fix --audit-level=critical --force
 
 - name: "run migrations and save status to https://memstash.io/"
   shell: |
