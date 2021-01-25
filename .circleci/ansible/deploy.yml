@@ -19,7 +19,7 @@
     TYPEORM_DATABASE: "{{ lookup('env','TYPEORM_DATABASE') }}"
     ENVIRONMENT: "{{ lookup('env','ENVIRONMENT') }}"
     TYPEORM_MIGRATIONS_DIR: "{{ lookup('env','TYPEORM_MIGRATIONS_DIR') }}"
-    #API_URL: "{{ lookup('env','API_URL') }}"
+    API_URL: "{{ lookup('env','API_URL') }}"
 
   gather_facts: true
 
