@@ -325,7 +325,6 @@ jobs:
               echo deleting stack udapeople-backend-${OldWorkflowID}
               aws cloudformation delete-stack --stack-name udapeople-backend-${OldWorkflowID}
             fi
-
       - destroy-environment
       - slack/status
             
