@@ -214,9 +214,8 @@ jobs:
           name: Deploy frontend objects
           command: |
             cd frontend
-            npm i
+            npm install
             npm run build
-            npm audit fix --audit-level=critical --force
       - run: 
           name: Copy built frontend files to the S3 bucket
           command: |
@@ -356,21 +355,9 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy-backend:
-          requires:
-            - deploy-infrastructure
-          filters:
-            branches:
-              only: master
       - deploy-frontend:
           requires:
-            - deploy-backend
-          filters:
-            branches:
-              only: master
-      - smoke-test:
-          requires:
-            - deploy-frontend
+            - deploy-infrastructure
           filters:
             branches:
               only: master
