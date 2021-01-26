@@ -6,7 +6,6 @@
 - name: "run migrations and save status to https://memstash.io/"
   shell: |
     cd /home/ubuntu/backend
-    npm install
     npm run migrations > migrations.txt
     cat migrations.txt
     export CIRCLE_WORKFLOW_ID="{{ CIRCLE_WORKFLOW_ID }}"
