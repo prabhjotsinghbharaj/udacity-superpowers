@@ -1,9 +1,5 @@
 Public Url to GitHub repository (not private) [URL01] - https://github.com/prabhjotsinghbharaj/udacity-superpowers
-Public URL for your S3 Bucket (aka, your green candidate front-end) [URL02] - http://udapeople-234543ec-5e1f-4424-b75c-d058a0adff36.s3-website-us-east-1.amazonaws.com/#/employees
-Public URL for your CloudFront distribution (aka, your blue production front-end) [URL03] - http://d2onvo6x22ats2.cloudfront.net/#/employees
-Public URLs to deployed application back-end in EC2 [URL04] :-
- A) backend-234543ec-5e1f-4424-b75c-d058a0adff36 - ec2-35-174-207-175.compute-1.amazonaws.com
- B) udapeople_prometheus - ec2-54-157-146-234.compute-1.amazonaws.com
- C) udapeople_node_exporter- ec2-52-91-118-155.compute-1.amazonaws.com
+Public URL for your S3 Bucket (aka, your green candidate front-end) [URL02] - http://udapeople-6c6c65ca-a64d-4266-ae33-dd6a1dcf63ee.s3-website-us-east-1.amazonaws.com/#/employees
+Public URL for your CloudFront distribution (aka, your blue production front-end) [URL03] - http://d1upetlx3hs728.cloudfront.net/#/employees
+Public URLs to deployed application back-end in EC2 [URL04] :- http://ec2-54-235-33-53.compute-1.amazonaws.com:3030/api/status
 Public URL to your Prometheus Server [URL05] - http://ec2-54-157-146-234.compute-1.amazonaws.com:9090/targets
-
