@@ -367,9 +367,15 @@ workflows:
           filters:
             branches:
               only: master
-      - cloudfront-update:
+      - smoke-test:
           requires:
             - deploy-frontend
+          filters:
+            branches:
+              only: master
+      - cloudfront-update:
+          requires:
+            - smoke-test
           filters:
             branches:
               only: master      
